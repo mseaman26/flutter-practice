@@ -7,6 +7,40 @@ class FirstPage extends StatelessWidget{
       appBar: AppBar(
         title: Text('First Page'),
       ),
+      drawer: Drawer(
+        backgroundColor: Colors.deepPurple[100],
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: 
+                Text('Drawer Herader')
+            ),
+            ListTile(
+              title: Text('H O M E'),
+              leading: Icon(Icons.home),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/home');
+                // Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('S E T T I N G S'),
+              leading: Icon(Icons.settings),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/settings');
+              },
+            ),
+            ListTile(
+              title: Text('Third Item'),
+              onTap: (){
+                Navigator.pop(context);
+              },
+            ), 
+          ],
+        ),
+        ),
       
       backgroundColor: Colors.blue,
       body: GridView.builder(
