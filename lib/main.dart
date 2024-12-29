@@ -1,36 +1,26 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/first_page.dart';
+import 'package:flutter_app/pages/second_page.dart';
 
 void main(){
   runApp(MyApp());
-  for(int icles = 0; icles < 5; icles++){
-    print('i is: ${icles + 1}');
-  }
 }
 
 class MyApp extends StatelessWidget{
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-
-        backgroundColor: Colors.blue,
-        body: GridView.builder(
-          itemCount: 64,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 8), 
-          itemBuilder: (context, index){
-            bool flip = (index / 8).floor() % 2 != 0;
-            return Container(
-              height: 50,
-              color: flip ? 
-                index % 2 == 0 ? Colors.black : Colors.red : 
-                index % 2 == 0 ? Colors.red : Colors.black,
-            );
-          },
-        )
-      ),
+      title: 'My App',
+      home: FirstPage(),
+      routes: {
+        '/first': (context) => FirstPage(),
+        '/second': (context) => SecondPage(),
+      },
     );
   }
 }
