@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/first_page.dart';
+import 'package:flutter_app/pages/todo_page.dart';
 void main(){
   runApp(MyApp());
 }
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My App',
-      home: FirstPage(),
+      home: TodoPage(),
 
     );
   }
