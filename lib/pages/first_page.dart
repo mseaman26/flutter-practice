@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/home.dart';
-import 'package:flutter_app/pages/settings.dart';
-import 'package:flutter_app/pages/profile_page.dart';
+
 
 class FirstPage extends StatefulWidget{
 
@@ -10,22 +8,13 @@ class FirstPage extends StatefulWidget{
 }
 
 class _FirstPageState extends State<FirstPage> {
-  int selectedIndex = 0;
+  int _incrementValue = 0;
 
-  final List<Widget> _pages = [
-    Home(),
-    Settings(),
-    ProfilePage(),
-  ];
-  final List<String> _title = [
-    'Home',
-    'Settings',
-    'Profile',
-  ];
 
-  void _navigateBottomBar(int index){
+
+  void _handleIncrement(){
     setState(() {
-      selectedIndex = index;
+      _incrementValue++;
     });
   }
 
@@ -33,29 +22,29 @@ class _FirstPageState extends State<FirstPage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(_title[selectedIndex]),
+        title: Text('First Page'),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: _navigateBottomBar,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-      ),
       backgroundColor: Colors.blue,
-      body: _pages[selectedIndex],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          //add padding to body
+          
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('First Page', style: TextStyle(fontSize: 30, color: Colors.white),),
+              Text('you have pressed the button this many times:', style: TextStyle(fontSize: 20, color: Colors.white),),
+              Text('$_incrementValue', style: TextStyle(fontSize: 20, color: Colors.white),),
+              ElevatedButton(onPressed: _handleIncrement, child: 
+                Text('increment', style: TextStyle(fontSize: 20, color: Colors.white),),
+              ),
+            ],
+          ),
+        ),
+      ),
+
       );
   }
 }
