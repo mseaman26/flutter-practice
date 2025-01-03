@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/todo_page.dart';
+import 'package:flutter_app/pages/HomePage.dart';
 void main(){
   runApp(MyApp());
 }
@@ -14,8 +14,18 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'My App',
-      home: TodoPage(),
+      home: HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.yellow,
+          
+        listTileTheme: const ListTileThemeData(
+          iconColor: Colors.white,
+    ),
 
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.yellow,
+        ),
+      ),
     );
   }
 }
