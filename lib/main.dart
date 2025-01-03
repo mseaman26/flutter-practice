@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/HomePage.dart';
-void main(){
+import 'package:hive_flutter/hive_flutter.dart';
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('todoBox');
   runApp(MyApp());
-}
+} 
 
 class MyApp extends StatelessWidget{
   const MyApp({super.key});
@@ -17,7 +21,7 @@ class MyApp extends StatelessWidget{
       home: HomePage(),
       theme: ThemeData(
         primarySwatch: Colors.yellow,
-          
+
         listTileTheme: const ListTileThemeData(
           iconColor: Colors.white,
     ),
