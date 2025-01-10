@@ -1,0 +1,5 @@
+{
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnSave": false,
+    "window.title": "${activeEditorShort}${separator}${rootName}${separator}${profileName}${separator}[Branch: main]"
+}

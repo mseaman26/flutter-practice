@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/shoe_tile.dart';
+import 'package:flutter_app/models/cart.dart';
+import 'package:flutter_app/models/shoe.dart';
+import 'package:provider/provider.dart';
 
 
-class ShopPage extends StatelessWidget{
+class ShopPage extends StatefulWidget{
   const ShopPage({super.key});
 
   @override
+  State<ShopPage> createState() => _ShopPageState();
+}
+
+class _ShopPageState extends State<ShopPage> {
+
+  void addShoeToCart(Shoe shoe) {
+    Provider.of<Cart>(context, listen: false).addItemToCart(shoe);
+    showDialog(context: context, builder: (context) => AlertDialog(
+       title: Text('Successfully added!'),
+       content: Text('Check your cart'),
+    ));
+  }
+
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Column(
+    return Consumer<Cart>(builder:(context, value, child) => 
+        Column(
         children: [
           Container(
             padding: const EdgeInsets.all(12),
@@ -56,12 +72,23 @@ class ShopPage extends StatelessWidget{
           const SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: value.getShoeList().length,
               itemBuilder: (context, index) {
-                return ShoeTile();
+                Shoe shoe = value.getShoeList()[index];
+                return ShoeTile(
+                  shoe: shoe, onTap: () => addShoeToCart(shoe),);
               }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25, left: 25, right: 25),
+            child: Divider(
+              color: Colors.white,
+            ),   
           )
         ],
-      ),
+      )
+
     );
   }
 }
